@@ -1,4 +1,6 @@
-MENU_PROMPT = "\nEnter 'a' to add a movie, 'l' to see your movies, 'f' to find a movie by title, or 'q' to quit: "
+
+MENU_PROMPT = "\nEnter 'a' to add a movie, 'l' to see your movies, 'f' to find a movie by title, 'q' to quit: "
+
 movies = []
 
 
@@ -38,7 +40,6 @@ user_options = {
     "l": show_movies,
     "f": find_movie
 }
-
 
 def menu():
     selection = input(MENU_PROMPT)
