@@ -1,4 +1,4 @@
-from utils import database
+from utils import database_using_file
 
 USER_CHOICE = """
 Enter:
@@ -11,6 +11,7 @@ Enter:
 Your choice: """
 
 def menu():
+    database_using_file.create_book_table()
     user_input = input(USER_CHOICE)
     while user_input != 'q':
         if user_input == 'a':
@@ -28,17 +29,16 @@ def menu():
 def prompt_add_book():  # ask for a book name and author
     name = input("Enter the book name: ")
     author = input("Enter the book author: ")
-    database.prompt_add_book(name, author)
+    database_using_file.prompt_add_book(name, author)
 
 
 def list_books():
-    books = database.get_all_books()
+    books = database_using_file.get_all_books()
     for book in books:
-        read = 'YES' if book['read'] else 'NO'
-        print(f"{book['name']} by {book['author']}, read: {read}")
-        
-        # print(f"Author: {book['author']}")
-        # print(f"Read: {book['read']}")
+        read = 'YES' if book['read'] == '1' else 'NO'
+        print(f"Name: {book['name']}")
+        print(f"Author: {book['author']}")
+        print(f"Read: {book['read']}")
 
 
 def prompt_read_book():  # ask for a book name and change it to read in our list
@@ -46,13 +46,13 @@ def prompt_read_book():  # ask for a book name and change it to read in our list
     book_read = input("Enter a book you have read: ")
     print("Great reading! Setting book as read")
 
-    database.mark_book_as_read(book_read)
+    database_using_file.mark_book_as_read(book_read)
 
 
 def prompt_delete_book():  # ask for book name and remove it from list
     book_to_delete = input("Enter a book to delete: ")
 
-    database.delete_book(book_to_delete)
+    database_using_file.delete_book(book_to_delete)
     print(f"The book {book_to_delete} has been deleted successfully!")
 
 
